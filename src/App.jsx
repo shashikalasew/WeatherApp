@@ -10,7 +10,7 @@ const App = () => {
   const [error, setError] = useState(null);
 
   const apiKey = 'dec406e029c440ecadd113314240111';
-  const apiUrl = 'http://api.weatherapi.com/v1/forecast.json';
+  const apiUrl = 'https://api.weatherapi.com/v1/forecast.json';
 
   const fetchWeather = async (city) => {
     setLoading(true);
