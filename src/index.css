@@ -149,45 +149,56 @@ input[type="text"] {
 
 @media (max-width: 768px) {
   .detail-box {
-    flex: 1 1 100%;
+    flex: 1 1 45%;
+  }
+
+  .forecast-day {
+    width: 100px;
   }
 
   input[type="text"] {
-    width: 80%;
-    margin-right: 0;
-    margin-bottom: 10px;
+    width: 60%;
+  }
+
+  button {
+    width: 20%;
+    padding: 0.5em;
+    margin-top: 10px;
   }
 
   .forecast {
     gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .forecast-day {
-    width: 80px;
-  }
-
-  button {
-    width: 100%;
+  body {
+    margin-top: 20px;
+    padding: 0;
   }
 }
 
 @media (max-width: 480px) {
-  .weather-display img {
-    width: 80px;
-    height: 80px;
+  .detail-box {
+    flex: 1 1 100%;
   }
 
   .forecast-day {
-    width: 70px;
+    width: 80px;
   }
 
-  .detail-box {
-
-    padding: 6px;
+  input[type="text"] {
+    width: 60%;
   }
 
   button {
-    font-size: 0.9em;
-    padding: 0.5em 1em;
+    width: 20%;
+    padding: 0.6em 1em;
+    margin-top: 10px;
+  }
+
+  .forecast {
+    flex-direction: column;
+    gap: 8px;
   }
 }
