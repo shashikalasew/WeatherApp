@@ -178,21 +178,20 @@ input[type="text"] {
   }
 
   .forecast-day {
-    width: 80px;
+    width: 70px;
   }
 
   input[type="text"] {
-    width: 60%;
+    width: 55%;
   }
 
   button {
     width: 25%;
-    padding: 0.6em 1em;
+    padding: 0.5em 0;
     margin-top: 10px;
   }
 
   .forecast {
-    flex-direction: column;
     gap: 10px;
   }
 }
