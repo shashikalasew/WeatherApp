@@ -3,16 +3,49 @@ import Header from './components/Header';
 import WeatherDisplay from './components/WeatherDisplay';
 import Forecast from './components/Forecast';
 
-const App = () => {
-  const [city, setCity] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export interface WeatherData {
+  location: {
+    name: string;
+    country: string;
+  };
+  current: {
+    condition: {
+      text: string;
+      icon: string;
+    };
+    temp_c: number;
+    uv: number;
+    humidity: number;
+    wind_kph: number;
+  };
+  forecast: {
+    forecastday: {
+      date: string;
+      day: {
+        avgtemp_c: number;
+        condition: {
+          text: string;
+          icon: string;
+        };
+      };
+      astro: {
+        sunrise: string;
+        sunset: string;
+      };
+    }[];
+  };
+}
+
+const App: React.FC = () => {
+  const [city, setCity] = useState<string>('');
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const apiKey = 'dec406e029c440ecadd113314240111';
   const apiUrl = 'https://api.weatherapi.com/v1/forecast.json';
 
-  const fetchWeather = async (city) => {
+  const fetchWeather = async (city: string) => {
     setLoading(true);
     setError(null);
     try {
@@ -20,7 +53,7 @@ const App = () => {
       if (!response.ok) {
         throw new Error('❌ City not found');
       }
-      const data = await response.json();
+      const data: WeatherData = await response.json();
       setWeatherData(data);
     } catch (err) {
       setError('❌ City not found');

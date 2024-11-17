@@ -5,11 +5,16 @@ import Humidity from './Humidity';
 import Sunrise from './Sunrise';
 import Sunset from './Sunset';
 import Wind from './Wind';
+import { WeatherData } from '../App';
 
+interface WeatherDisplayProps {
+  weatherData: WeatherData;
+  cityName: string;
+  countryName: string;
+}
 
-const WeatherDisplay = ({ weatherData, cityName, countryName }) => {
-
-  const getWeatherClass = (condition) => {
+const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, cityName, countryName }) => {
+  const getWeatherClass = (condition: string): string => {
     switch (condition) {
       case 'Sunny':
       case 'Clear':
@@ -46,14 +51,25 @@ const WeatherDisplay = ({ weatherData, cityName, countryName }) => {
       <p>{weatherData.current.condition.text}</p>
 
       <div className="weather-details">
-        <Temperature temp={weatherData.current.temp_c} />
-        <UVIndex uv={weatherData.current.uv} />
-        <Humidity humidity={weatherData.current.humidity} />
-        <Sunrise sunrise={weatherData.forecast.forecastday[0].astro.sunrise} />
-        <Sunset sunset={weatherData.forecast.forecastday[0].astro.sunset} />
-        <Wind windSpeed={weatherData.current.wind_kph} />
+        <div className="detail-box">
+          <Temperature temp={weatherData.current.temp_c} />
+        </div>
+        <div className="detail-box">
+          <UVIndex uv={weatherData.current.uv} />
+        </div>
+        <div className="detail-box">
+          <Humidity humidity={weatherData.current.humidity} />
+        </div>
+        <div className="detail-box">
+          <Sunrise sunrise={weatherData.forecast.forecastday[0].astro.sunrise} />
+        </div>
+        <div className="detail-box">
+          <Sunset sunset={weatherData.forecast.forecastday[0].astro.sunset} />
+        </div>
+        <div className="detail-box">
+          <Wind windSpeed={weatherData.current.wind_kph} />
+        </div>
       </div>
-      
     </div>
   );
 };
